@@ -1,13 +1,11 @@
 module.exports = {
     env: {
-        es6: true,
+        browser: true,
         commonjs: true,
-        jest: true
+        es2021: true,
     },
-    extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended'
-    ],
+    plugins: ['@typescript-eslint'],
+    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
     overrides: [
         {
             env: {
@@ -21,14 +19,11 @@ module.exports = {
             }
         }
     ],
-    parser: '@typescript-eslint/parser',
     parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module'
+        sourceType: 'module',
+        ecmaVersion: 'latest'
     },
-    plugins: [
-        '@typescript-eslint'
-    ],
+    parser: '@typescript-eslint/parser',
     rules: {
         'max-classes-per-file': 1,
         '@typescript-eslint/semi': 0,
@@ -70,8 +65,6 @@ module.exports = {
         complexity: [2, { max: 12 }],
         'computed-property-spacing': [2, 'never'],
         'no-console': [1, { allow: ['warn', 'error'] }],
-        // 'no-debugger':import.meta.env.NODE_ENV === 'production' ? 2 : 1,
-        'no-magic-numbers': 0,
         curly: 2,
         'eol-last': 2,
         eqeqeq: [2, 'smart'],
@@ -97,6 +90,7 @@ module.exports = {
         quotes: [1, 'single', 'avoid-escape'],
         'quote-props': [1, 'as-needed'],
         semi: [2, 'always'],
+        indent: ['error', 2],
         'keyword-spacing': [
             2,
             {
@@ -110,22 +104,5 @@ module.exports = {
         'generator-star-spacing': 0,
         'space-before-blocks': 2,
         'no-unused-labels': 1,
-        'no-restricted-imports': [
-            2,
-            {
-                paths: [
-                    {
-                        name: 'axios',
-                        importNames: ['default'],
-                        message: 'Please use an API file or function to make requests.'
-                    },
-                    {
-                        name: 'lodash-es',
-                        importNames: ['cloneDeep'],
-                        message: "Please use the more performant deepClone from '~/common/functions/common'"
-                    }
-                ]
-            }
-        ],
     }
 };

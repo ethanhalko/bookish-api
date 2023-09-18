@@ -3,10 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["*"],
-      "@/*": ["src/*"],
+      "Types/*": ["./types/*"],
     },
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "target": "ES2018",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -15,16 +13,18 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
+    "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
+    "strict": true,
     "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": false,
     "preserveValueImports": false,
     "importsNotUsedAsValues": "preserve",
     "ignoreDeprecations": "5.0",
-    "strict": true,
-    "skipLibCheck": true
+    "types": ["@types/node"]
   },
-  "exclude": ["tests", "node_modules"]
+  "include": ["environment.d.ts", "**/*.ts", "src/**/*.ts", "common/*"],
+  "exclude": ["node_modules"]
 }

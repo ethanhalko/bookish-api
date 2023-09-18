@@ -1,7 +1,5 @@
-// @ts-expect-error -- No clue right now
 import knex from 'knex';
 import express from 'express';
-import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
@@ -21,14 +19,12 @@ const knexConfig = {
   },
 };
 
-const knexInstance = knex(knexConfig);
+knex(knexConfig);
 
-app.use(knexInstance);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(new URL(import.meta.url).pathname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
