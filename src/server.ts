@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import type { ErrorExt } from '../types/error';
+import type { ErrorExt } from 'Types/error';
 /**
  * Module dependencies.
  */
-import app from '../app';
+import app from './app.mjs';
 import debug from 'debug';
 import http from 'http';
 

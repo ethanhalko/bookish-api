@@ -5,7 +5,7 @@
       "~/*": ["*"],
       "Types/*": ["./types/*"],
     },
-    "target": "ES2018",
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
     "lib": ["ESNext", "ESNext.AsyncIterable", "DOM", "scripthost"],
