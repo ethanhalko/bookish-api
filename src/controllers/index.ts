@@ -1,4 +1,4 @@
-import { Request, Response } from '../types/index';
+import type { Request, Response } from '../types/index';
 
 export class IndexController {
   public getIndex(req: Request, res: Response): void {

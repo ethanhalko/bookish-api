@@ -1,11 +1,12 @@
-import { Router } from 'express';
-import { IndexController } from '../controllers/index';
+import type { Express } from 'express';
+import { Router as _router } from 'express';
+import { IndexController } from '../controllers';
 
-const router = Router();
+const router = _router();
 const indexController = new IndexController();
 
 router.get('/', indexController.getIndex);
 
-export const setRoutes = (app: any) => {
+export const setRoutes = (app: Express) => {
   app.use('/', router);
 };

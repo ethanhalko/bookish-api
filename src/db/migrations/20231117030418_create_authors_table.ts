@@ -1,4 +1,6 @@
-export async function up(knex){
+import type { Knex } from 'knex';
+
+export async function up(knex: Knex) {
   await knex.schema.createTable('authors', (table) => {
     table.increments('id');
     table.string('name').notNullable();
@@ -8,7 +10,7 @@ export async function up(knex){
 }
 
 
-export async function down(knex){
+export async function down(knex: Knex) {
   await knex.schema.dropTable('authors');
 }
 

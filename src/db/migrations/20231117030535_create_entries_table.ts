@@ -1,4 +1,6 @@
-export async function up(knex){
+import type { Knex } from 'knex';
+
+export async function up(knex: Knex) {
   await knex.schema.createTable('entries', (table) => {
     table.increments('id');
     table.integer('book_id').unsigned().notNullable();
@@ -9,7 +11,7 @@ export async function up(knex){
 }
 
 
-export async function down(knex){
- await  knex.schema.dropTable('entries');
+export async function down(knex: Knex) {
+  await  knex.schema.dropTable('entries');
 }
 
