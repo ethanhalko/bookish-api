@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["*"],
+      "Types/*": ["./types/*"],
+    },
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM", "scripthost"],
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "preserveValueImports": false,
+    "importsNotUsedAsValues": "preserve",
+    "ignoreDeprecations": "5.0",
+    "types": ["@types/node"]
+  },
+  "include": ["environment.d.ts", "**/*.ts", "src/**/*.ts", "common/*"],
+  "exclude": ["node_modules"]
+}
