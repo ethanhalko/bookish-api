@@ -11,7 +11,7 @@ module.exports = {
     },
     migrations: {
       directory: './src/db/migrations',
-      loadExtensions: ['.mjs']
+      loadExtensions: ['.ts']
     },
     seeds: {
       directory: './src/db/seeds',

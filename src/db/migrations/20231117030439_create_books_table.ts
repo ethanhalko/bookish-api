@@ -7,7 +7,6 @@ export async function up(knex: Knex) {
     table.integer('author_id').unsigned().notNullable();
     table.integer('page_count').notNullable();
     table.string('description');
-    table.string('cover_url');
     table.foreign('author_id').references('authors.id');
     table.timestamps(true, true);
   });
