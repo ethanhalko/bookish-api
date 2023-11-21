@@ -14,11 +14,11 @@ export async function validateBookRequest(req: Request, res: Response, next: Nex
 
   const book = await getBook(isbn);
 
-  if (!book) {
-    res.status(404);
+  if (book) {
+    res.status(400);
 
     return res.json({
-      error: 'Book not found',
+      error: 'Book already exists',
     });
   }
 

@@ -13,13 +13,14 @@ export class BooksController {
   public async create(req: Request, res: Response): Promise<void> {
     const { isbn } = req.body;
 
-    if (await getBook(isbn)) {
-      res.status(400).json({ message: 'Book already exists in library' });
+    const bookData = await fetchBookData(isbn);
+
+    if (!bookData) {
+      res.status(404).json({ message: 'Book not found' });
 
       return;
     }
 
-    const bookData = await fetchBookData(isbn);
     const book = await createBook(bookData);
     await createAuthors(book, bookData.authors);
 
