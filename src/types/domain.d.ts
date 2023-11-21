@@ -1,3 +1,5 @@
+import 'knex/types/tables';
+
 declare module 'knex/types/tables' {
   interface Timestamps {
     created_at?: string;
@@ -7,6 +9,7 @@ declare module 'knex/types/tables' {
   interface Author extends Timestamps {
     id: number;
     name: string;
+    open_library_id: string;
     bio?: string;
   }
 
@@ -17,6 +20,8 @@ declare module 'knex/types/tables' {
     page_count: number;
     description?: string;
     cover_url?: string;
+    isbn: string;
+    olid: string;
   }
 
   interface Entry extends Timestamps {
@@ -38,5 +43,20 @@ declare module 'knex/types/tables' {
     user: User;
     start_date: Date;
     end_date: Date;
+  }
+
+  interface BookAuthor extends Timestamps {
+    id: number;
+    book_id: Book['id'];
+    author_id: Author['id'];
+  }
+
+  interface Tables {
+    authors: Author;
+    books: Book;
+    entries: Entry;
+    users: User;
+    goals: Goal;
+    books_authors: BookAuthor;
   }
 }

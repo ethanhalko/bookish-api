@@ -4,7 +4,8 @@ export async function up(knex: Knex) {
   await knex.schema.createTable('authors', (table) => {
     table.increments('id');
     table.string('name').notNullable();
-    table.string('bio');
+    table.text('bio');
+    table.string('open_library_id').notNullable();
     table.timestamps(true, true);
   });
 }

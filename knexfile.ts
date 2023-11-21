@@ -1,14 +1,10 @@
-module.exports = {
+import type { Knex } from 'knex';
+type dbEnv = 'development' | 'production';
+
+const config: Record<dbEnv, Knex.Config> = {
   development: {
-    client: 'mysql',
-    connection: {
-      host: '127.0.0.1',
-      port: 3306,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      charset: 'utf8mb4',
-    },
+    client: 'pg',
+    connection: process.env.PG_CONNECTION_STRING,
     migrations: {
       directory: './src/db/migrations',
       loadExtensions: ['.ts']
@@ -18,4 +14,7 @@ module.exports = {
       loadExtensions: ['.ts']
     }
   },
+  production: {}
 };
+
+export default config;
