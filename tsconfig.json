@@ -4,11 +4,22 @@
     "module": "commonjs",
     "outDir": "./dist",
     "strict": true,
+    "noEmit": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM", "scripthost"],
+    "typeRoots": ["./src/types"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "~/*": ["./*"],
+    }
   },
-  "include": ["src/**/*.ts"],
+  "ts-node": {
+    "files": true,
+    "require": ["tsconfig-paths/register"]
+  },
+  "include": ["src/types/**/*.d.ts", "**/*.ts", "src/**/*.ts", "common/*"],
   "exclude": ["node_modules"]
 }

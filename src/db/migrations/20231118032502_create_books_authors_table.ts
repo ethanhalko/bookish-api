@@ -2,7 +2,7 @@ import type { Knex } from 'knex';
 
 
 export async function up(knex: Knex): Promise<void> {
-  await knex.schema.createTable('book_author', (table) => {
+  await knex.schema.createTable('books_authors', (table) => {
     table.increments('id');
     table.integer('book_id').unsigned().notNullable().references('id').inTable('books');
     table.integer('author_id').unsigned().notNullable().references('id').inTable('authors');
@@ -12,6 +12,6 @@ export async function up(knex: Knex): Promise<void> {
 
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.dropTable('book_author');
+  await knex.schema.dropTable('books_authors');
 }
 

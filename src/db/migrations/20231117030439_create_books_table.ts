@@ -4,10 +4,10 @@ export async function up(knex: Knex) {
   await knex.schema.createTable('books', (table) => {
     table.increments('id');
     table.string('title').notNullable();
-    table.integer('author_id').unsigned().notNullable();
     table.integer('page_count').notNullable();
     table.string('description');
-    table.foreign('author_id').references('authors.id');
+    table.string('olid').notNullable();
+    table.string('isbn').notNullable();
     table.timestamps(true, true);
   });
 }
