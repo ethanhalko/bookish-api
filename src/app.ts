@@ -2,7 +2,7 @@ import express from 'express';
 import knexConstructor from 'knex';
 import { getKnexConfig } from './knex';
 import booksRouter from './routes/books';
-import { validateBookRequest } from './middleware/books';
+import { validateBookRequest } from '@/middleware/books';
 
 const app = express();
 const config = getKnexConfig(process.env.NODE_ENV);

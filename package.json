@@ -1,7 +1,6 @@
 {
-  "name": "my-node-app",
+  "name": "bookish-api",
   "version": "1.0.0",
-  "description": "A Node.js project using Express.js, Knex.js and TypeScript",
   "main": "src/app.ts",
   "scripts": {
     "start": "node --inspect -r ts-node/register --env-file=.env server.ts",
@@ -12,12 +11,6 @@
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
-  "keywords": [
-    "node",
-    "express",
-    "knex",
-    "typescript"
-  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

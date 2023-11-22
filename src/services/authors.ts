@@ -1,6 +1,6 @@
-import type { BooksApiAuthor } from '../types/open-library';
+import type { BooksApiAuthor } from '@/types/open-library';
 import type Bookish from 'knex/types/tables';
-import { knex } from '../app';
+import { knex } from '@/app';
 import { fetchAuthorData } from '@/services/open-library';
 
 async function getAuthorData(olid: string) {
