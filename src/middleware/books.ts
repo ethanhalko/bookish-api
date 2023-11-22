@@ -12,7 +12,7 @@ export async function validateBookRequest(req: Request, res: Response, next: Nex
     });
   }
 
-  const book = await getBook(isbn);
+  const book = await getBook(isbn).catch((e: Error) => next(e));
 
   if (book) {
     res.status(400);

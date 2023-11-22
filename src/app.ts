@@ -4,7 +4,6 @@ import { getKnexConfig } from './knex';
 import booksRouter from './routes/books';
 import { validateBookRequest } from './middleware/books';
 
-const port = process.env.PORT || 3005;
 const app = express();
 const config = getKnexConfig(process.env.NODE_ENV);
 export const knex = knexConstructor(config);
@@ -17,8 +16,5 @@ app.get('/', (req, res) => {
 
 app.use('/books', validateBookRequest, booksRouter);
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
 
 export default app;

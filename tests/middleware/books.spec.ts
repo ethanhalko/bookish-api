@@ -1,30 +1,16 @@
+import { jest, expect, test } from '@jest/globals';
 import { validateBookRequest } from '@/middleware/books';
 import type { Request, Response, NextFunction } from 'express';
-import { vi, expect, it } from 'vitest';
+import { getBook } from '@/services/books';
 
-vi.mock('knex');
-
-const { getBook } = vi.hoisted(() => {
-  return {
-    getBook: vi.fn().mockReturnValue(null)
-  };
-});
-
-vi.mock('@/services/books', async (importOriginal) => {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-  const mod = await importOriginal<typeof import('@/services/books')>();
-
-  return {
-    ...mod,
-    getBook
-  };
-});
+jest.mock('@/services/books');
+jest.mock('knex');
 
 const req = { body: { isbn: '1234567890' } } as Request;
-const res = { status: vi.fn().mockReturnThis(), json: vi.fn() } as unknown as Response;
-const next = vi.fn() as unknown as NextFunction;
+const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as unknown as Response;
+const next = jest.fn() as NextFunction;
 
-it('returns 400 status if isbn is missing', async () => {
+test('returns 400 status if isbn is missing', async () => {
   const req = { body: {} } as Request;
 
   await validateBookRequest(req, res, next);
@@ -35,19 +21,21 @@ it('returns 400 status if isbn is missing', async () => {
   });
 });
 
-it('returns 404 status if book is not found', async () => {
+test('returns 400 status if book already exists', async () => {
+  // @ts-expect-error - figure this out
+  (getBook as jest.Mock).mockResolvedValue({ id: 123 });
+
   await validateBookRequest(req, res, next);
 
-  expect(res.status).toHaveBeenCalledWith(404);
+  expect(res.status).toHaveBeenCalledWith(400);
   expect(res.json).toHaveBeenCalledWith({
-    error: 'Book not found',
+    error: 'Book already exists',
   });
 });
 
-it('calls next function if book is found', async () => {
-  getBook.mockReturnValue({ id: 123 });
-
-  const req = { body: { isbn: '1234567890' } } as Request;
+test('calls next function if book does not exist', async () => {
+  // @ts-expect-error - figure this out
+  (getBook as jest.Mock).mockResolvedValue(null);
 
   await validateBookRequest(req, res, next);
 

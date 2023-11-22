@@ -11,6 +11,10 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["ESNext", "ESNext.AsyncIterable", "DOM", "scripthost"],
     "typeRoots": ["./src/types"],
+    "types": [
+      "@types/node",
+      "@types/jest"
+    ],
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./*"],
