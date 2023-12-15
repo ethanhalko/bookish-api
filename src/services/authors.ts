@@ -38,16 +38,16 @@ export async function processBookAuthors(bookAuthors: BooksApiAuthor[]) {
 
 export async function createAuthors(bookIds: Record<'id', number>[], bookAuthors: BooksApiAuthor[]) {
   const authors = await processBookAuthors(bookAuthors);
-  // @ts-ignore
   const authorIds = await knex('authors').insert(authors).returning('id');
   const toInsert: Omit<Bookish.BookAuthor, 'id'>[] = [];
 
   bookIds.forEach((bookId) => {
-    const author = authorIds.
-      map((authorId) => ({ book_id: bookId.id, author_id: authorId.id }));
+    const author = authorIds.map((authorId) => ({ book_id: bookId.id, author_id: authorId.id }));
 
     toInsert.push(...author);
   });
 
-  await knex('books_authors').insert(toInsert);
+  await knex('books_authors')
+    .insert(toInsert)
+    .catch((e) => console.error('error inserting authors', e));
 }

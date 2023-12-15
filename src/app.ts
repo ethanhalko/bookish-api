@@ -2,7 +2,6 @@ import express from 'express';
 import knexConstructor from 'knex';
 import { getKnexConfig } from './knex';
 import booksRouter from './routes/books';
-import { validateBookRequest } from '@/middleware/books';
 
 const app = express();
 const config = getKnexConfig(process.env.NODE_ENV);
@@ -14,7 +13,7 @@ app.get('/', (req, res) => {
   res.send('Nothing here!');
 });
 
-app.use('/books', validateBookRequest, booksRouter);
+app.use('/books', booksRouter);
 
 
 export default app;
